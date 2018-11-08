@@ -1,0 +1,134 @@
+Faculty of Engineering
+Faculty of Science
+Faculty of Law
+Faculty of Social Sciences
+Anthropological Archaeology (minor)
+Anthropology
+Applied Animal Biology (minor)
+Applied Plant and Soil Sciences (minor)
+Commerce (minor)*
+Computer Science*
+Economics*
+Education (minor)
+Family Studies (minor)
+Food and Resources Economics (minor)
+Food Sciences (minor)
+Geography
+Linguistics
+Mathematics
+Nutritional Sciences (minor)
+Political Science*
+Psychology
+Social Work
+Sociology
+Archaeology
+Asian Area Studies
+Asian Language and Culture
+Classical, Near Eastern and Religious Studies
+English
+French
+German
+German Studies (minor)
+Hispanic Studies (Spanish)
+African Studies (minor)
+Asian Canadian and Asian Migration Studies (minor)
+Canadian Studies
+Cognitive Systems*
+Critical Studies in Sexuality (minor)
+Environment and Society (minor)
+First Nations and Indigenous Studies
+Gender, Race, Sexuality and Social Justice
+Health and Society (minor)
+Interdisciplinary Studies*
+International Relations*
+Latin American Studies
+Law and Society (minor)
+Medieval Studies
+Modern European Studies
+Religion, Literature, and the Arts*
+Science Studies (minor)
+Speech Sciences
+United States Studies
+Urban Studies (minor)
+History
+History and Philosophy of Science
+American Studies
+Italian (minor)
+Philosophy
+Applied Music Technology (minor)*
+Creative Writing*
+Film Production*
+Film Studies*
+Music
+Analytics
+Agile Project Management
+Theatre
+Theatre: Design and Production*
+Visual Art*
+Romance Studies
+Russian (minor)
+Scandinavian Studies (minor)
+First Nations and Endangered Languages
+Advanced Leadership Studies
+Museum Studies
+African American and African Diaspora Studies
+Administration Studies
+Architecture Studies
+Art Studies
+Business Studies
+Construction
+Cosmetology Studies
+Design Studies
+Economic Studies
+Education
+Energy Studies
+Engineering Studies
+Environmental Studies
+Fashion
+General Studies
+Humanities Studies
+Journalism and Mass Communication
+Languages
+Law Studies
+Life Sciences
+Management Studies
+Marketing Studies
+Natural Sciences
+Performing Arts
+Professional Studies
+Social Sciences
+Sport
+Sustainability Studies
+Technology Studies
+Tourism and Hospitality
+Internet of Things
+Software Product Management
+Responsive Website Development and Design
+Full Stack Web Development
+Web Design for Everybody
+An Introduction to Programming the Internet of Things (IOT)
+Game Design: Art and Concepts
+Java Programming: An Introduction to Software
+Java Programming: Object-Oriented Design of Data Structures
+Diego
+iOS App Development with Swift
+Python for Everybody
+Ruby on Rails Web Development
+iOS Development for Creative Entrepreneurs
+Desenvolvimento e Design de Aplicativos para iPhone
+Game Design and Development
+Machine Learning
+Data Science at Scale
+Big Data
+Data Warehousing for Business Intelligence
+Data Analysis and Interpretation
+Strategic Management and Innovation
+Hotel Management: Distribution, Revenue and Demand Management
+Excel to MySQL: Analytic Techniques for Business
+Social Media Marketing
+Business Strategy
+Business Analytics
+Introduction to Finance: Valuation and Investing
+Public Relations For Digital Media
+Bioinformatics
+OptoBotics℠
