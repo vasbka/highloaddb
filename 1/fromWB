@@ -1,0 +1,196 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema test
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema admis
+-- -----------------------------------------------------
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`enrollee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`enrollee` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `lastName` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `login` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `password` VARCHAR(25) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `email` VARCHAR(55) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `additional` TEXT(1000) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`subjectType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`subjectType` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`subject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`subject` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `subjecttypeId` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
+  INDEX `fk_subject_subjectType1_idx` (`subjecttypeId` ASC) VISIBLE,
+  CONSTRAINT `fk_subject_subjectType1`
+    FOREIGN KEY (`subjecttypeId`)
+    REFERENCES `mydb`.`subjectType` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`faculty`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`faculty` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `generalCount` INT UNSIGNED NOT NULL,
+  `budgetCount` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`statement`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`statement` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`enrolleeSubject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`enrolleeSubject` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `point` FLOAT NOT NULL,
+  `enrolleId` INT UNSIGNED NOT NULL,
+  `subjectId` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_enrolleeSubject_enrollee_idx` (`enrolleId` ASC) VISIBLE,
+  INDEX `fk_enrolleeSubject_subject1_idx` (`subjectId` ASC) VISIBLE,
+  CONSTRAINT `fk_enrolleeSubject_enrollee`
+    FOREIGN KEY (`enrolleId`)
+    REFERENCES `mydb`.`enrollee` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_enrolleeSubject_subject1`
+    FOREIGN KEY (`subjectId`)
+    REFERENCES `mydb`.`subject` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`facultySubject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`facultySubject` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `coefficient` FLOAT NULL,
+  `faculytId` INT UNSIGNED NOT NULL,
+  `subjectId` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_facultySubject_faculty1_idx` (`faculytId` ASC) VISIBLE,
+  INDEX `fk_facultySubject_subject1_idx` (`subjectId` ASC) VISIBLE,
+  CONSTRAINT `fk_facultySubject_faculty1`
+    FOREIGN KEY (`faculytId`)
+    REFERENCES `mydb`.`faculty` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_facultySubject_subject1`
+    FOREIGN KEY (`subjectId`)
+    REFERENCES `mydb`.`subject` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`request`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`request` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `averageScore` FLOAT NOT NULL,
+  `facultyId` INT UNSIGNED NOT NULL,
+  `enrolleeId` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_request_faculty1_idx` (`facultyId` ASC) VISIBLE,
+  INDEX `fk_request_enrollee1_idx` (`enrolleeId` ASC) VISIBLE,
+  CONSTRAINT `fk_request_faculty1`
+    FOREIGN KEY (`facultyId`)
+    REFERENCES `mydb`.`faculty` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_request_enrollee1`
+    FOREIGN KEY (`enrolleeId`)
+    REFERENCES `mydb`.`enrollee` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`statementRequest`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`statementRequest` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `request_id` INT UNSIGNED NOT NULL,
+  `statement_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_statementRequest_request1_idx` (`request_id` ASC) VISIBLE,
+  INDEX `fk_statementRequest_statement1_idx` (`statement_id` ASC) VISIBLE,
+  CONSTRAINT `fk_statementRequest_request1`
+    FOREIGN KEY (`request_id`)
+    REFERENCES `mydb`.`request` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_statementRequest_statement1`
+    FOREIGN KEY (`statement_id`)
+    REFERENCES `mydb`.`statement` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
