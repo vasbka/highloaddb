@@ -1,4 +1,4 @@
-Faculty of Engineering
+﻿Faculty of Engineering
 Faculty of Science
 Faculty of Law
 Faculty of Social Sciences
@@ -6,9 +6,9 @@ Anthropological Archaeology (minor)
 Anthropology
 Applied Animal Biology (minor)
 Applied Plant and Soil Sciences (minor)
-Commerce (minor)*
-Computer Science*
-Economics*
+Commerce (minor)
+Computer Science
+Economics
 Education (minor)
 Family Studies (minor)
 Food and Resources Economics (minor)
@@ -17,7 +17,7 @@ Geography
 Linguistics
 Mathematics
 Nutritional Sciences (minor)
-Political Science*
+Political Science
 Psychology
 Social Work
 Sociology
@@ -33,19 +33,19 @@ Hispanic Studies (Spanish)
 African Studies (minor)
 Asian Canadian and Asian Migration Studies (minor)
 Canadian Studies
-Cognitive Systems*
+Cognitive Systems
 Critical Studies in Sexuality (minor)
 Environment and Society (minor)
 First Nations and Indigenous Studies
 Gender, Race, Sexuality and Social Justice
 Health and Society (minor)
-Interdisciplinary Studies*
-International Relations*
+Interdisciplinary Studies
+International Relations
 Latin American Studies
 Law and Society (minor)
 Medieval Studies
 Modern European Studies
-Religion, Literature, and the Arts*
+Religion, Literature, and the Arts
 Science Studies (minor)
 Speech Sciences
 United States Studies
@@ -55,16 +55,16 @@ History and Philosophy of Science
 American Studies
 Italian (minor)
 Philosophy
-Applied Music Technology (minor)*
-Creative Writing*
-Film Production*
-Film Studies*
+Applied Music Technology (minor)
+Creative Writing
+Film Production
+Film Studies
 Music
 Analytics
 Agile Project Management
 Theatre
-Theatre: Design and Production*
-Visual Art*
+Theatre: Design and Production
+Visual Art
 Romance Studies
 Russian (minor)
 Scandinavian Studies (minor)
@@ -131,4 +131,4 @@ Business Analytics
 Introduction to Finance: Valuation and Investing
 Public Relations For Digital Media
 Bioinformatics
-OptoBotics℠
+OptoBotics

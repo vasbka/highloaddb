@@ -1,4 +1,6 @@
 -- create db
+DROP DATABASE IF EXISTS `admissionsboard`;
+
 CREATE DATABASE
 IF NOT EXISTS `admissionsBoard`
 DEFAULT CHARACTER SET utf8
@@ -11,7 +13,8 @@ CREATE TABLE IF NOT EXISTS `enrolee` (
   `login` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
   `password` VARCHAR(25) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
   `email` VARCHAR(120) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
-  `additional` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
+  `additional` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
+  `registrationDate` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `enrolleeEmailIndex` (`email` ASC)
 )
@@ -22,20 +25,12 @@ COLLATE = utf8_unicode_ci;
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `description` TEXT(500) CHARACTER SET `utf8` COLLATE `utf8_unicode_ci` NOT NULL,
+  `popularity` FLOAT(3,2) NULL,
+  `anyDate` DATE NULL,
   `subjectTypeId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY(`id`),
   INDEX `subjectNameIndex` (`name` ASC)
-)
-ENGINE = MyISAM
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS `statement` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
-  `statusId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `statusId` (`statusId` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
@@ -46,8 +41,36 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
   `totalCount` SMALLINT UNSIGNED NOT NULL,
   `budgetCount` SMALLINT UNSIGNED NOT NULL,
+  `creationDate` DATE NOT NULL,
+  `popularity` FLOAT(3,2) NULL,
+  `description` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `facultyNameIndex`(`facultyName` ASC)
+)
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `statement` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  `popularity` FLOAT(3,2) NULL,
+  `description` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `someName` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `date` (`date` ASC)
+)
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `city` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
+  `area` FLOAT(10,2) NOT NULL,
+  `description` TEXT(500) NOT NULL,
+  `creationDate` DATE NOT NULL,
+  PRIMARY KEY `name`(`name`)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
