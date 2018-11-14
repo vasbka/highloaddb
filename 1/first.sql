@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `city` (
   `area` FLOAT(10,2) NOT NULL,
   `description` TEXT(500) NOT NULL,
   `creationDate` DATE NOT NULL,
-  PRIMARY KEY `name`(`name`)
+  PRIMARY KEY `id`(`id`)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
