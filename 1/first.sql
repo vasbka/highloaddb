@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `enrolee` (
   `email` VARCHAR(120) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
   `additional` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
   `registrationDate` DATE NOT NULL,
+  `cityId` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `enrolleeEmailIndex` (`email` ASC)
 )
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `description` TEXT(500) CHARACTER SET `utf8` COLLATE `utf8_unicode_ci` NOT NULL,
   `popularity` FLOAT(3,2) NULL,
   `anyDate` DATE NULL,
-  `subjectTypeId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `subjectTypeId` INT UNSIGNED NOT NULL,
   PRIMARY KEY(`id`),
   INDEX `subjectNameIndex` (`name` ASC)
 )
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   `popularity` FLOAT(3,2) NULL,
   `description` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `facultyNameIndex`(`facultyName` ASC)
+  INDEX `facultyNameIndex`(`name` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
@@ -70,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `city` (
   `area` FLOAT(10,2) NOT NULL,
   `description` TEXT(500) NOT NULL,
   `creationDate` DATE NOT NULL,
-  PRIMARY KEY `id`(`id`)
+  PRIMARY KEY `id`(`id`),
+  INDEX `cityName`(`name` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
@@ -89,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `request` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `enrolleeId` INT UNSIGNED NOT NULL,
   `facultyId` INT UNSIGNED NOT NULL,
-  `averageScore` FLOAT(4,2) NOT NULL
+  `averageScore` FLOAT(4,2) NOT NULL,
   PRIMARY KEY (`id`, `enrolleeId`, `facultyId`),
   INDEX `requestEnrolleeIndex`(`enrolleeId` ASC),
   INDEX `requestFacultyIndex`(`facultyId` ASC)
@@ -115,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `enrolleeSubject` (
   `subjectId` INT UNSIGNED NOT NULL,
   `point` FLOAT(4,2) NOT NULL,
   PRIMARY KEY (`id`, `enrolleeId`, `subjectId`),
-  INDEX `enrolleeSubjectIndex`(`enrolleeId` ASC),
+  INDEX `enrolleeSubjectIndex`(`enrolleeId` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
@@ -126,13 +128,29 @@ CREATE TABLE IF NOT EXISTS `facultySubject` (
   `coefficient` FLOAT NOT NULL,
   `facultyId` INT UNSIGNED NOT NULL,
   `subjectId` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
   INDEX `facultySubjectFacultyIdIndex` (`facultyId` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
-LOAD DATA INFILE 'first.txt' INTO TABLE enrolee
-FIELDS TERMINATED BY ','
-(firstName, lastName, login, password, email, additional);
+LOAD DATA INFILE 'enrolee.txt' INTO TABLE enrolee
+FIELDS TERMINATED BY '::'
+(firstName, lastName, login, password, email, additional, cityId, registrationDate);
+
+LOAD DATA INFILE 'city.txt' INTO TABLE City
+FIELDS TERMINATED BY '::'
+(name, area, description, creationDate);
+
+LOAD DATA INFILE 'faculty.txt' INTO TABLE faculty
+FIELDS TERMINATED BY '::'
+(name, generalCount, budgetCount, creationDate, popularity, description);
+
+LOAD DATA INFILE 'statements.txt' INTO TABLE statement
+FIELDS TERMINATED BY '::'
+(someName, popularity, description, creationDate);
+
+LOAD DATA INFILE 'subjects.txt' INTO TABLE subject
+FIELDS TERMINATED BY '::'
+(name, subjecttypeid, description, anyDate, popularity);

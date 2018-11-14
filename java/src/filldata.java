@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 public class filldata {
-    public static final String[] domen = new String[]{"mail", "yandex","google","qewrty","test"};
-    public static final String[] countries = new String[] {"ru","ua","en","fr"};
+    public static final String[] domen = new String[]{"mail", "yandex", "google", "qewrty", "test"};
+    public static final String[] countries = new String[]{"ru", "ua", "en", "fr"};
     public static final List<Character> chars = new ArrayList<>();
     public static final List<String> logins = new ArrayList<>();
     public static final List<String> password = new ArrayList<>();
@@ -16,15 +16,16 @@ public class filldata {
     public static final List<String> emails = new ArrayList<>();
     public static final List<String> hobbies = new ArrayList<>();
     public static final List<String> phrase = new ArrayList<>();
+
     public static void main(String[] args) throws IOException {
         for (int i = 65; i < 91; i++) {
-            chars.add((char)i);
+            chars.add((char) i);
         }
         for (int i = 97; i < 123; i++) {
-            chars.add((char)i);
+            chars.add((char) i);
         }
         for (int i = 48; i < 58; i++) {
-            chars.add((char)i);
+            chars.add((char) i);
         }
         Random random = new Random();
         for (int i = 0; i < 2000; i++) {
@@ -34,7 +35,7 @@ public class filldata {
             }
             emails.add(stringBuilder.toString() + i
                     + "@" + domen[random.nextInt(domen.length)]
-                    + "." +  countries[random.nextInt(countries.length)]);
+                    + "." + countries[random.nextInt(countries.length)]);
         }
         for (int i = 0; i < 2000; i++) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -55,21 +56,21 @@ public class filldata {
 //        logins.forEach(System.out::println);
         BufferedReader br = new BufferedReader(new FileReader("last.txt"));
         String str;
-        while((str = br.readLine()) != null) {
+        while ((str = br.readLine()) != null) {
             lastName.add(str);
         }
         br = new BufferedReader(new FileReader("first.txt"));
-        while((str = br.readLine()) != null) {
+        while ((str = br.readLine()) != null) {
             firstName.add(str);
         }
 
         br = new BufferedReader(new FileReader("hobbies.txt"));
-        while((str = br.readLine()) != null) {
+        while ((str = br.readLine()) != null) {
             hobbies.add(str);
         }
 
         br = new BufferedReader(new FileReader("aboutHb.txt"));
-        while((str = br.readLine()) != null) {
+        while ((str = br.readLine()) != null) {
             phrase.add(str);
         }
 
@@ -79,12 +80,20 @@ public class filldata {
             for (int j = 0; j < random.nextInt(hobbies.size()); j++) {
                 add.append(phrase.get(random.nextInt(phrase.size()))).append(" ").append(hobbies.get(random.nextInt(hobbies.size()))).append(".");
             }
-            res.add(firstName.get(random.nextInt(firstName.size())) + ","
-                + lastName.get(random.nextInt(lastName.size())) + ","
-                + logins.get(i) + ","
-                + password.get(i) + ","
-                + emails.get(i) + ","
-                + add);
+            Random ran = new Random();
+            int day = ran.nextInt(25) + 1;
+            int month = ran.nextInt(12) + 1;
+            int year = ran.nextInt(220) + 1800;
+            String registrationDate = day + "/" + month + "/" + year;
+
+            res.add(firstName.get(random.nextInt(firstName.size())) + "::"
+                    + lastName.get(random.nextInt(lastName.size())) + "::"
+                    + logins.get(i) + "::"
+                    + password.get(i) + "::"
+                    + emails.get(i) + "::"
+                    + add + "::"
+                    + random.nextInt(2000) + "::"
+                    + registrationDate);
         }
         res.forEach(System.out::println);
 

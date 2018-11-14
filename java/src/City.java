@@ -52,6 +52,6 @@ class Cit {
 
     @Override
     public String toString() {
-        return name + "," + area + "," + description + "," + date;
+        return name + "::" + area + "::" + description + "::" + date;
     }
 }
