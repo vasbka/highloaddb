@@ -84,7 +84,7 @@ public class filldata {
             int day = ran.nextInt(25) + 1;
             int month = ran.nextInt(12) + 1;
             int year = ran.nextInt(220) + 1800;
-            String registrationDate = day + "/" + month + "/" + year;
+            String registrationDate = year + "-" + (month < 10 ? "0" : month) + (month < 10 ? month : "") + "-" + (day < 10 ? "0" : day) + (day < 10 ? day : "");
 
             res.add(firstName.get(random.nextInt(firstName.size())) + "::"
                     + lastName.get(random.nextInt(lastName.size())) + "::"

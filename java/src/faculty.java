@@ -8,14 +8,15 @@ public class faculty {
     public static List<Fac> faculties = new ArrayList<>();
     public static List<String> names = new ArrayList<>();
     public static List<String> descriptions = new ArrayList<>();
+
     public static void main(String[] args) throws Exception {
         BufferedReader facultyNameReader = new BufferedReader(new FileReader("faculty.txt"));
         BufferedReader descriptionReader = new BufferedReader(new FileReader("description.txt"));
         String name, generalCount, budgetCount, creationDate, popularity, description;
-        while( (name = facultyNameReader.readLine()) != null ){
+        while ((name = facultyNameReader.readLine()) != null) {
             names.add(name);
         }
-        while((description = descriptionReader.readLine()) != null){
+        while ((description = descriptionReader.readLine()) != null) {
             descriptions.add(description);
         }
 
@@ -27,9 +28,12 @@ public class faculty {
             int day = ran.nextInt(25) + 1;
             int month = ran.nextInt(12) + 1;
             int year = ran.nextInt(220) + 1800;
-            creationDate = day + "/" + month + "/" + year;
+            creationDate = year + "-" + (month < 10 ? "0" : month) + (month < 10 ? month : "") + "-" + (day < 10 ? "0" : day) + (day < 10 ? day : "");
             String pop = String.valueOf(ran.nextDouble() * 100);
-            faculties.add(new Fac(names.get(names.size() - 1) + i,
+            if (pop.equals("100")) {
+                pop = "99.999";
+            }
+            faculties.add(new Fac(names.get(ran.nextInt(names.size() - 1)) + i,
                     general, budget, creationDate, pop, descriptions.get(ran.nextInt(descriptions.size() - 1))));
         }
 

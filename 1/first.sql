@@ -6,6 +6,8 @@ IF NOT EXISTS `admissionsBoard`
 DEFAULT CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
+USE admissionsBoard;
+
 CREATE TABLE IF NOT EXISTS `enrolee` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL,
@@ -27,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   `description` TEXT(500) CHARACTER SET `utf8` COLLATE `utf8_unicode_ci` NOT NULL,
-  `popularity` FLOAT(3,2) NULL,
+  `popularity` FLOAT(4,2) NOT NULL,
   `anyDate` DATE NULL,
   `subjectTypeId` INT UNSIGNED NOT NULL,
   PRIMARY KEY(`id`),
@@ -43,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   `totalCount` SMALLINT UNSIGNED NOT NULL,
   `budgetCount` SMALLINT UNSIGNED NOT NULL,
   `creationDate` DATE NOT NULL,
-  `popularity` FLOAT(3,2) NULL,
+  `popularity` FLOAT(4,2) NULL,
   `description` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `facultyNameIndex`(`name` ASC)
@@ -54,12 +56,12 @@ COLLATE = utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `statement` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
-  `popularity` FLOAT(3,2) NULL,
+  `finishedDate` DATE NOT NULL,
+  `popularity` FLOAT(4,2) NULL,
   `description` TEXT(500) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   `someName` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `date` (`date` ASC)
+  INDEX `finishedDate` (`finishedDate` ASC)
 )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
@@ -145,11 +147,11 @@ FIELDS TERMINATED BY '::'
 
 LOAD DATA INFILE 'faculty.txt' INTO TABLE faculty
 FIELDS TERMINATED BY '::'
-(name, generalCount, budgetCount, creationDate, popularity, description);
+(name, totalCount, budgetCount, creationDate, popularity, description);
 
 LOAD DATA INFILE 'statements.txt' INTO TABLE statement
 FIELDS TERMINATED BY '::'
-(someName, popularity, description, creationDate);
+(someName, popularity, description, finishedDate);
 
 LOAD DATA INFILE 'subjects.txt' INTO TABLE subject
 FIELDS TERMINATED BY '::'

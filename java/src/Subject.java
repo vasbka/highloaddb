@@ -30,7 +30,7 @@ public class Subject {
                 int month = random.nextInt(12) + 1;
                 int year = random.nextInt(220) + 1800;
 
-                anydate = day + "/" + month + "/" + year;
+                anydate = year + "-" + (month < 10 ? "0" : month) + (month < 10 ? month : "") + "-" + (day < 10 ? "0" : day) + (day < 10 ? day : "");
                 description = descriptions.get(random.nextInt(descriptions.size() - 1));
                 subjects.add(new Subj(names.get(random.nextInt(names.size() - 1)), String.valueOf(i),
                         description, anydate, String.valueOf(random.nextDouble() * 100)));

@@ -30,7 +30,7 @@ public class Statemnets {
             int day = rn.nextInt(25) + 1;
             int month = rn.nextInt(12) + 1;
             int year = rn.nextInt(220) + 1800;
-            String rndDate = day + "/" + month + "/" + year;
+            String rndDate = year + "-" + (month < 10 ? "0" : month) + (month < 10 ? month : "") + "-" + (day < 10 ? "0" : day) + (day < 10 ? day : "");
             sts.add(new Statement(rndDate, String.valueOf(rn.nextDouble()*100),
                     descriptions.get(rn.nextInt(descriptions.size() - 1)), name.toString()));
         }
@@ -52,6 +52,6 @@ class Statement {
 
     @Override
     public String toString() {
-        return name + "::" + popularity + "::" + description + "::" + date;
+        return name + "::" + popularity + "::" + description + "a::" + date;
     }
 }

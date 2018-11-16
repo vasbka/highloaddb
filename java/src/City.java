@@ -23,7 +23,7 @@ public class City {
             int month = random.nextInt(12) + 1;
             int year = random.nextInt(220) + 1800;
 
-            date = day + "/" + month + "/" + year;
+            date = year + "-" + (month < 10 ? "0" : month) + (month < 10 ? month : "") + "-" + (day < 10 ? "0" : day) + (day < 10 ? day : "");
             area = String.valueOf(random.nextDouble() * 1000000);
             cityDescription = descriptions.get(random.nextInt(descriptions.size() - 1));
             cities.add(new Cit(cityName, area, cityDescription, date));
